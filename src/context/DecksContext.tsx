@@ -1,4 +1,11 @@
-import { createContext, Dispatch, ReactNode, SetStateAction, useState } from "react";
+import {
+  createContext,
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 
 export interface IDeck {
   id: string;
@@ -7,23 +14,40 @@ export interface IDeck {
 }
 
 export interface IDeckContext {
-    decks: IDeck[];
-    setDecks: Dispatch<SetStateAction<IDeck[]>>
+  decks: IDeck[];
+  setDecks: Dispatch<SetStateAction<IDeck[]>>;
 }
 
 const defaultState = {
-    decks: [],
-    setDecks: () => { },
+  decks: [],
+  setDecks: () => {},
 } as unknown as IDeckContext;
 
 export const DecksContext = createContext(defaultState);
 
-export default function DecksProvider({children} : {children: ReactNode}) {
-    const [decks, setDecks] = useState<IDeck[]>([]);
+export default function DecksProvider({ children }: { children: ReactNode }) {
+  const [decks, setDecks] = useState<IDeck[]>([]);
 
-    return (
-        <DecksContext.Provider value={{decks, setDecks}}>
-        {children}
-        </DecksContext.Provider>
-    )
+  useEffect(() => {
+    const savedDecks = localStorage.getItem("decks");
+
+    if (savedDecks) {
+        setDecks(JSON.parse(savedDecks));
+    } else {
+        setDecks([]);
+    }
+
+  }, []);
+
+  useEffect(() => {
+    if (decks.length > 0) {
+      localStorage.setItem("decks", JSON.stringify(decks));
+    }
+  }, [decks]);
+
+  return (
+    <DecksContext.Provider value={{ decks, setDecks }}>
+      {children}
+    </DecksContext.Provider>
+  );
 }

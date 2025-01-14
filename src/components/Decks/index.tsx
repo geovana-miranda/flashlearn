@@ -6,7 +6,7 @@ const Decks = () => {
     const { decks, setDecks } = useContext(DecksContext);
   return (
           <section>
-        <p>Baralhos </p>
+        <h2>Baralhos </h2>
         <ul>
         {decks.map((deck: IDeck) => {
           return <li key={deck.id}>
