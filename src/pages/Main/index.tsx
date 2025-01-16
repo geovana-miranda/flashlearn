@@ -9,7 +9,7 @@ const Main = () => {
   return (
     <>
       <Banner />
-    <Decks />
+      <Decks />
     </>
   );
 };

@@ -1,14 +1,7 @@
 .banner {
     width: 1000px;
     margin: auto;
-  background-image: linear-gradient(
-    to right top,
-    #fe52b7,
-    #ff6fb1,
-    #ff89b0,
-    #fea2b4,
-    #f7b9be
-  );
+  background: linear-gradient(135deg, #ffc2e1, #ff99cc);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -31,13 +24,13 @@
 
 .banner__text {
   color: #fff;
-  font-size: 1.3em;
+  font-size: 1.2em;
 }
 
 .banner__button {
     width: 250px;
     height: 40px;
-    background-color: #9B4FE7;
+    background-color: #a100c9;
     border: none;
     border-radius: 20px;
     font-size: 1em;
@@ -45,6 +38,10 @@
     color: #FFF;
     font-weight: 400;
     cursor: pointer;
+}
+
+.banner__button:hover {
+  background: #8100a7;
 }
 
 .banner__image {
