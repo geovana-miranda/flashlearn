@@ -6,22 +6,22 @@ import styles from "./PageDecks.module.css";
 const PageDecks = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  function handleClickOpen() {
+  function handleClickOpenModal() {
     setIsOpen(true);
   }
 
-  function handleClose() {
+  function handleCloseModal() {
     setIsOpen(false);
   }
   return (
     <section className={styles.container__decks}>
       <div className={styles.decks__header}>
         <h2 className={styles.title}>Baralhos </h2>
-        <button onClick={handleClickOpen} className={styles.decks__button}>
+        <button onClick={handleClickOpenModal} className={styles.decks__button}>
           Criar baralho
         </button>
       </div>
-      {isOpen && <CreateDeck titleAction="Criar" handleClose={handleClose} />}
+      {isOpen && <CreateDeck titleAction="Criar" handleCloseModal={handleCloseModal} />}
       <Decks edit={true} />
     </section>
   );

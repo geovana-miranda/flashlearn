@@ -11,6 +11,13 @@ export interface IDeck {
   id: string;
   title: string;
   description?: string;
+  cards: ICards[] | [];
+}
+
+export interface ICards {
+  id: string;
+  term: string;
+  definition: string;
 }
 
 export interface IDeckContext {

@@ -1,0 +1,55 @@
+.container__deck {
+    width: 1000px;
+    margin: 2em auto;
+}
+
+.deck__header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.title {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1em;
+}
+
+.deck__button {
+    width: 200px;
+    height: 40px;
+    background-color: #a100c9;
+    border: none;
+    border-radius: 10px;
+    font-size: 1em;
+    text-transform: uppercase;
+    color: #FFF;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.deck__button:hover {
+  background: #8100a7;
+}
+
+.container__cards {
+    margin: auto;
+    width: 700px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6em;
+}
+
+.container__card {
+    background: #FFF;
+    padding: 1em;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;    
+    justify-content: space-between;
+    align-items: center;
+    transition: box-shadow 0.3 ease;
+}
+
+.container__card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}

@@ -4,6 +4,7 @@ import { MdOutlineEdit } from "react-icons/md";
 import styles from "./Deck.module.css";
 import { useContext, useEffect, useState } from "react";
 import CreateDeck from "../CreateDeck";
+import { useNavigate } from "react-router-dom";
 
 interface IDeckProps {
   deck: IDeck;
@@ -16,7 +17,9 @@ const Deck = ({ deck, edit }: IDeckProps) => {
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [deckToEdit, setDeckToEdit] = useState<IDeck | null>(null);
 
-  function handleClose() {
+  const navigate = useNavigate();
+
+  function handleCloseModal() {
     setIsOpen(false);
     setIsEditing(false);
   }
@@ -33,6 +36,7 @@ const Deck = ({ deck, edit }: IDeckProps) => {
       id: deck.id,
       title: deck.title,
       description: deck.description,
+      cards: deck.cards
     });
     setIsEditing(true);
   }
@@ -41,14 +45,16 @@ const Deck = ({ deck, edit }: IDeckProps) => {
     if (isEditing) setIsOpen(true);
   }, [isEditing]);
 
-  
-  function handleClick() {
-    console.log("clicou no deck")
+  function handleDeckClick(id: string) {
+    navigate(`/baralhos/${id}`);
   }
 
   return (
     <>
-      <div  onClick={handleClick}  className={styles.container__deck}>
+      <div
+        onClick={() => handleDeckClick(deck.id)}
+        className={styles.container__deck}
+      >
         <p className={styles.cards}>15 cards</p>
         <p className={styles.title}>{deck.title}</p>
 
@@ -73,9 +79,9 @@ const Deck = ({ deck, edit }: IDeckProps) => {
       </div>
       {isOpen && (
         <CreateDeck
-          deckToEdit={deckToEdit}
+          deckToEdit={deckToEdit!}
           titleAction="Editar"
-          handleClose={handleClose}
+          handleCloseModal={handleCloseModal}
         />
       )}
     </>

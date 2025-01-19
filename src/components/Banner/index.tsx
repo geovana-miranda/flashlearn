@@ -10,7 +10,7 @@ const Banner = () => {
     setIsOpen(true);
   }
 
-  function handleClose () {
+  function handleCloseModal () {
     setIsOpen(false);
   };
 
@@ -29,7 +29,7 @@ const Banner = () => {
           <button onClick={handleClickOpen} className={styles.banner__button}>Criar baralho</button>
         </span>
       </div>
-      {isOpen && <CreateDeck titleAction="Criar" handleClose={handleClose} />}
+      {isOpen && <CreateDeck titleAction="Criar" handleCloseModal={handleCloseModal} />}
       <img className={styles.banner__image} src={imagem} alt="" />
     </section>   
   )

@@ -6,11 +6,11 @@ import { v4 as uuidv4 } from "uuid";
 interface ICreateDeckProps {
   deckToEdit?: IDeck;
   titleAction: string;
-  handleClose: () => void;
+  handleCloseModal: () => void;
 }
 
 export default function CreateDeck(props: ICreateDeckProps) {
-  const { deckToEdit, titleAction, handleClose } = props;
+  const { deckToEdit, titleAction, handleCloseModal } = props;
   const { decks, setDecks } = useContext(DecksContext);
   const [title, setTitle] = useState<string>(deckToEdit?.title || "");
   const [description, setDescription] = useState<string>(
@@ -21,9 +21,7 @@ export default function CreateDeck(props: ICreateDeckProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
+    if (inputRef.current) inputRef.current.focus();
   }, []);
 
   function handleSubmit(e: React.FormEvent) {
@@ -63,6 +61,7 @@ export default function CreateDeck(props: ICreateDeckProps) {
         id: uuidv4(),
         title: title,
         description: description,
+        cards: []
       };
 
       setDecks((prev) => [...prev, newDeck]);
@@ -71,10 +70,8 @@ export default function CreateDeck(props: ICreateDeckProps) {
     setTitle("");
     setDescription("");
     setError("");
-    handleClose();
-  }
-
-
+    handleCloseModal();
+  } 
 
   return (
     <div className={styles.modalOverlay}>
@@ -105,7 +102,7 @@ export default function CreateDeck(props: ICreateDeckProps) {
           <div className={styles.button__container}>
             <button
               type="button"
-              onClick={handleClose}
+              onClick={handleCloseModal}
               className={styles.button__cancel}
             >
               Cancelar
