@@ -1,0 +1,32 @@
+.container__decks {
+    width: 1000px;
+    margin: 2em auto;
+}
+
+.decks__header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.title {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1em;
+}
+
+.decks__button {
+    width: 200px;
+    height: 40px;
+    background-color: #a100c9;
+    border: none;
+    border-radius: 10px;
+    font-size: 1em;
+    text-transform: uppercase;
+    color: #FFF;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.decks__button:hover {
+  background: #8100a7;
+}

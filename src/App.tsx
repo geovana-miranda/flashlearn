@@ -3,6 +3,7 @@ import "./App.css";
 import Header from "./components/Header";
 import Main from "./pages/Main";
 import DecksProvider from "./context/DecksContext";
+import PageDecks from "./pages/PageDecks";
 
 function App() {
 
@@ -12,6 +13,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Main />} />
+          <Route path="/baralhos" element={<PageDecks />} />
         </Routes>
       </BrowserRouter>
       </DecksProvider>

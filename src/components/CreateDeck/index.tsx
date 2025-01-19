@@ -1,18 +1,30 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import styles from "./CreateDeck.module.css";
-import { DecksContext } from "../../context/DecksContext";
+import { DecksContext, IDeck } from "../../context/DecksContext";
 import { v4 as uuidv4 } from "uuid";
 
 interface ICreateDeckProps {
+  deckToEdit?: IDeck;
+  titleAction: string;
   handleClose: () => void;
 }
 
 export default function CreateDeck(props: ICreateDeckProps) {
-  const { handleClose } = props;
+  const { deckToEdit, titleAction, handleClose } = props;
   const { decks, setDecks } = useContext(DecksContext);
-  const [title, setTitle] = useState<string>("");
-  const [description, setDescription] = useState<string>("");
+  const [title, setTitle] = useState<string>(deckToEdit?.title || "");
+  const [description, setDescription] = useState<string>(
+    deckToEdit?.description || ""
+  );
+
   const [error, setError] = useState<string>("");
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -22,40 +34,62 @@ export default function CreateDeck(props: ICreateDeckProps) {
       return;
     }
 
-    const exists = decks.some(
-      (deck) => deck.title.toLowerCase() === title.toLowerCase()
+    const exists = decks.find(
+      (deck) => deck.title.trim().toLowerCase() === title.trim().toLowerCase()
     );
 
-    if (exists) {
-      setError("Esse baralho já existe");
-      return;
+    if (deckToEdit) {
+
+      if (exists && exists.id !== deckToEdit.id) {
+        setError("Esse baralho já existe");
+        return;
+      }
+
+      const updateDecks = decks.map((item) =>
+        item.id === deckToEdit.id
+          ? { ...deckToEdit, title: title, description: description }
+          : item
+      );
+      
+      setDecks(updateDecks);
+    } else {
+
+      if (exists) {
+        setError("Esse baralho já existe");
+        return;
+      }
+
+      const newDeck = {
+        id: uuidv4(),
+        title: title,
+        description: description,
+      };
+
+      setDecks((prev) => [...prev, newDeck]);
     }
-
-    const newDeck = {
-      id: uuidv4(),
-      title: title,
-      description: description,
-    };
-
-    setDecks((prev) => [...prev, newDeck]);
 
     setTitle("");
     setDescription("");
     setError("");
+    handleClose();
   }
+
+
 
   return (
     <div className={styles.modalOverlay}>
       <div className={styles.modalContent}>
-        <h3>Criar baralho</h3>
+        <h3>{titleAction} baralho</h3>
         {error ? <p className={styles.error}>{error}</p> : ""}
-        <form onSubmit={handleSubmit} className={styles.form}>
+        <form className={styles.form}>
           <label className={styles.label}>
             <span>Título:</span>
             <input
+              ref={inputRef}
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               type="text"
+              maxLength={20}
             />
           </label>
 
@@ -65,14 +99,23 @@ export default function CreateDeck(props: ICreateDeckProps) {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               type="text"
+              maxLength={40}
             />
           </label>
           <div className={styles.button__container}>
-            <button onClick={handleClose} className={styles.button__cancel}>
+            <button
+              type="button"
+              onClick={handleClose}
+              className={styles.button__cancel}
+            >
               Cancelar
             </button>
-            <button type="submit" className={styles.button__create}>
-              Criar
+            <button
+              type="submit"
+              onClick={handleSubmit}
+              className={styles.button__create}
+            >
+              Salvar
             </button>
           </div>
         </form>

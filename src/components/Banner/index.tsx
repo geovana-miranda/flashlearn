@@ -29,7 +29,7 @@ const Banner = () => {
           <button onClick={handleClickOpen} className={styles.banner__button}>Criar baralho</button>
         </span>
       </div>
-      {isOpen && <CreateDeck open={isOpen} handleClose={handleClose} />}
+      {isOpen && <CreateDeck titleAction="Criar" handleClose={handleClose} />}
       <img className={styles.banner__image} src={imagem} alt="" />
     </section>   
   )
