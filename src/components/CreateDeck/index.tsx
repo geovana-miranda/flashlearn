@@ -32,27 +32,33 @@ export default function CreateDeck(props: ICreateDeckProps) {
       return;
     }
 
-    const exists = decks.find(
+    const exist = decks.find(
       (deck) => deck.title.trim().toLowerCase() === title.trim().toLowerCase()
     );
 
     if (deckToEdit) {
-
-      if (exists && exists.id !== deckToEdit.id) {
+      if (exist && exist.id !== deckToEdit.id) {
         setError("Esse baralho já existe");
         return;
       }
 
-      const updateDecks = decks.map((item) =>
+      if (
+        deckToEdit.title === title &&
+        deckToEdit.description === description
+      ) {
+        handleCloseModal();
+        return;
+      }
+
+      const updatedDecks = decks.map((item) =>
         item.id === deckToEdit.id
           ? { ...deckToEdit, title: title, description: description }
           : item
       );
-      
-      setDecks(updateDecks);
-    } else {
 
-      if (exists) {
+      setDecks(updatedDecks);
+    } else {
+      if (exist) {
         setError("Esse baralho já existe");
         return;
       }
@@ -61,17 +67,21 @@ export default function CreateDeck(props: ICreateDeckProps) {
         id: uuidv4(),
         title: title,
         description: description,
-        cards: []
+        cards: [],
       };
 
       setDecks((prev) => [...prev, newDeck]);
     }
 
+    resetForm();
+    handleCloseModal();
+  }
+
+  function resetForm() {
     setTitle("");
     setDescription("");
     setError("");
-    handleCloseModal();
-  } 
+  }
 
   return (
     <div className={styles.modalOverlay}>

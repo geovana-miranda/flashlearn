@@ -41,6 +41,7 @@
 
 .container__card {
     background: #FFF;
+    font-size: 1.2em;
     padding: 1em;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -53,3 +54,19 @@
 .container__card:hover {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
+
+.container__button {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.icon {
+    font-size: 1.2em;
+    margin-left: 0.2em;
+    color: #444;
+    cursor: pointer;
+  }
+  
+  .icon:hover {
+    color: #8100a7;
+  }

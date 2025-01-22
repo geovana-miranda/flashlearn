@@ -11,10 +11,10 @@ export interface IDeck {
   id: string;
   title: string;
   description?: string;
-  cards: ICards[] | [];
+  cards: ICard[] | [];
 }
 
-export interface ICards {
+export interface ICard {
   id: string;
   term: string;
   definition: string;
