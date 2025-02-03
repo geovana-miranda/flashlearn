@@ -1,50 +1,60 @@
-# React + TypeScript + Vite
+# Flashlearn
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este é um aplicativo de **Flashcards**, desenvolvido para ajudar no estudo e memorização de conteúdo. O usuário pode criar baralhos de flashcards, adicionar cards dentro desses baralhos, estudar o conteúdo e revisar os cards que errou. O app também exibe as estatísticas de desempenho do usuário.
 
-Currently, two official plugins are available:
+## Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Criar Baralhos**: O usuário pode criar novos baralhos de flashcards, com título e descrição.
+- **Adicionar Cards**: Cada baralho pode conter diversos cards, permitindo que o usuário insira perguntas e respostas.
+- **Estudar Flashcards**: O usuário pode estudar os cards, passando pelas perguntas e revelando as respostas, marcando se sabia a respota ou não.
+- **Revisão**: Após a sessão de estudo, os cards em que o usuário errou são revisados.
+- **Estatísticas**: O app calcula a taxa de acertos do usuário, exibindo um histórico de desempenho com base na última sessão.
 
-## Expanding the ESLint configuration
+## Tecnologias Usadas
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **React**: Biblioteca para construir a interface de usuário.
+- **React Router**: Para navegação entre páginas.
+- **CSS Modules**: Para gerenciamento de estilos locais.
+- **UUID**: Para geração de IDs únicos para os baralhos.
+- **Context API**: Para gerenciamento de estado global dos baralhos.
+- **React Icons**: Para ícones personalizáveis e de fácil uso na interface.
+- **Local Storage**: Para armazenamento dos dados localmente no navegador.
 
-- Configure the top-level `parserOptions` property like this:
+## Como Rodar o Projeto
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+### Pré-requisitos
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+- **Node.js** e **npm** instalados. Caso não tenha, instale o [Node.js](https://nodejs.org/).
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### Passos
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+1. Clone este repositório para sua máquina:
+
+    ```bash
+    git clone https://github.com/geovana-miranda/flashlearn.git
+    ```
+
+2. Acesse a pasta do projeto:
+
+    ```bash
+    cd flashlearn
+    ```
+
+3. Instale as dependências:
+
+    ```bash
+    npm install
+    ```
+
+4. Inicie o projeto:
+
+    ```bash
+    npm start
+    ```
+
+    O aplicativo estará disponível em [http://localhost:3000](http://localhost:3000).
+
+## Funcionalidades Futuras
+
+- Implementação de backend utilizando **JSON Server**, utilizando operações CRUD (Criar, Ler, Atualizar, Excluir) para gerenciamento de dados.
+- Otimização da experiência do usuário, tornando a aplicação totalmente responsiva para dispositivos móveis e desktops.
