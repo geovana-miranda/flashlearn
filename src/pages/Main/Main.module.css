@@ -1,10 +1,10 @@
 .container__decks {
-    width: 1000px;
-    margin: 2em auto;
+    padding: 3em;
+    background-image: linear-gradient(to right top, #56ccf2, #57d1e1, #6cd4cd, #87d5ba, #a2d5ab);
 }
 
 .title {
     font-size: 2rem;
-    color: #333;
-    margin-bottom: 1em;
+    color:hsl(0, 0.00%, 17.30%);
+    margin-bottom: 1.5em;
 }

@@ -1,29 +1,11 @@
 import {
   createContext,
-  Dispatch,
   ReactNode,
-  SetStateAction,
   useEffect,
   useState,
 } from "react";
+import { IDeck, IDeckContext } from "../types/types";
 
-export interface IDeck {
-  id: string;
-  title: string;
-  description?: string;
-  cards: ICard[] | [];
-}
-
-export interface ICard {
-  id: string;
-  term: string;
-  definition: string;
-}
-
-export interface IDeckContext {
-  decks: IDeck[];
-  setDecks: Dispatch<SetStateAction<IDeck[]>>;
-}
 
 const defaultState = {
   decks: [],

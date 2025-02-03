@@ -1,4 +1,4 @@
-.modalOverlay {
+.modal__overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -11,7 +11,7 @@
   z-index: 1000;
 }
 
-.modalContent {
+.modal__content {
   background: #fff;
   border-radius: 8px;
   padding: 20px;
@@ -26,7 +26,7 @@
   justify-contet: center;
 }
 
-.modalContent h2 {
+.modal__content h2 {
     font-size: 22px;
     font-weight: 800;
     margin-bottom: 20px;
@@ -84,13 +84,13 @@
 }
 
 .button__create {
-    background: #9B4FE7;
+  background-image: linear-gradient(to right top, #6c5ce7, #5e77f3, #588ffb, #60a5fe, #74b9ff);
     border: none;
     color: #fff;
 }
 
 .button__create:hover {
-    background: #653dcc;
+  background: linear-gradient(90deg, #2F80ED, #56CCF2);
   }
 
 .button__cancel {

@@ -1,7 +1,8 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import styles from "./CreateDeck.module.css";
-import { DecksContext, IDeck } from "../../context/DecksContext";
+import { DecksContext } from "../../context/DecksContext";
 import { v4 as uuidv4 } from "uuid";
+import { IDeck } from "../../types/types";
 
 interface ICreateDeckProps {
   deckToEdit?: IDeck;
@@ -16,7 +17,6 @@ export default function CreateDeck(props: ICreateDeckProps) {
   const [description, setDescription] = useState<string>(
     deckToEdit?.description || ""
   );
-
   const [error, setError] = useState<string>("");
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -24,57 +24,45 @@ export default function CreateDeck(props: ICreateDeckProps) {
     if (inputRef.current) inputRef.current.focus();
   }, []);
 
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-
+  function validate() {
     if (!title) {
       setError("Digite um título válido");
-      return;
+      return false;
     }
 
     const exist = decks.find(
       (deck) => deck.title.trim().toLowerCase() === title.trim().toLowerCase()
     );
 
-    if (deckToEdit) {
-      if (exist && exist.id !== deckToEdit.id) {
-        setError("Esse baralho já existe");
-        return;
-      }
-
-      if (
-        deckToEdit.title === title &&
-        deckToEdit.description === description
-      ) {
-        handleCloseModal();
-        return;
-      }
-
-      const updatedDecks = decks.map((item) =>
-        item.id === deckToEdit.id
-          ? { ...deckToEdit, title: title, description: description }
-          : item
-      );
-
-      setDecks(updatedDecks);
-    } else {
-      if (exist) {
-        setError("Esse baralho já existe");
-        return;
-      }
-
-      const newDeck = {
-        id: uuidv4(),
-        title: title,
-        description: description,
-        cards: [],
-      };
-
-      setDecks((prev) => [...prev, newDeck]);
+    if (exist && exist.id !== deckToEdit?.id) {
+      setError("Esse baralho já existe");
+      return false;
     }
 
-    resetForm();
-    handleCloseModal();
+    return true;
+  }
+
+  function createDeck() {
+    const newDeck = {
+      id: uuidv4(),
+      title: title,
+      description: description,
+      studyAccuracy: null,
+      cards: [],
+    };
+
+    setDecks((prev) => [...prev, newDeck]);
+  }
+
+  function editDeck() {
+    if (!deckToEdit) return;
+    const updatedDecks = decks.map((item) =>
+      item.id === deckToEdit.id
+        ? { ...deckToEdit, title: title, description: description }
+        : item
+    );
+
+    setDecks(updatedDecks);
   }
 
   function resetForm() {
@@ -83,9 +71,21 @@ export default function CreateDeck(props: ICreateDeckProps) {
     setError("");
   }
 
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!validate()) return;
+    if (deckToEdit) {
+      editDeck();
+    } else {
+      createDeck();
+    }
+    resetForm();
+    handleCloseModal();
+  }
+
   return (
-    <div className={styles.modalOverlay}>
-      <div className={styles.modalContent}>
+    <div className={styles.modal__overlay}>
+      <div className={styles.modal__content}>
         <h3>{titleAction} baralho</h3>
         {error ? <p className={styles.error}>{error}</p> : ""}
         <form className={styles.form}>
@@ -96,7 +96,6 @@ export default function CreateDeck(props: ICreateDeckProps) {
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               type="text"
-              maxLength={20}
             />
           </label>
 
@@ -106,7 +105,6 @@ export default function CreateDeck(props: ICreateDeckProps) {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               type="text"
-              maxLength={40}
             />
           </label>
           <div className={styles.button__container}>

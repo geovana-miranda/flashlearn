@@ -1,0 +1,50 @@
+.statistics__container {
+    width: 550px;
+    height: 350px;
+    background: rgba(255, 255, 255, 0.9) !important;
+    padding: 1em;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    color: #2C2C2C;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.congratulations {
+    margin-bottom: 1em;
+}
+
+.congratulations__title {
+    font-size: 1.8em;
+    font-weight: 500;
+    margin-bottom: 0.5em;
+    text-align: center;
+}
+
+.congratulations__subtitle {
+    font-size: 1.1em;
+}
+
+.statistics__title {
+    text-align: center;
+    font-size: 2em;
+    font-weight: 400;
+}
+
+.statistics__results {
+    margin: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.statistics__congratulations {
+    font-size: 1.2em;
+}
+
+.icon {
+    font-size: 1.3em;
+    margin-right: 0.1em;
+}

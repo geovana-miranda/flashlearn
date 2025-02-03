@@ -1,18 +1,14 @@
 import styles from "./Banner.module.css";
 import imagem from "../../assets/img/imagem-inicio.png";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import CreateDeck from "../CreateDeck";
 
 const Banner = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  function handleClickOpen() {
-    setIsOpen(true);
-  }
-
-  function handleCloseModal () {
-    setIsOpen(false);
-  };
+  const handleCloseModal= useCallback(function handleCloseModal() {
+    setIsOpen(!isOpen);
+  }, [isOpen])
 
   return (
     <section className={styles.banner}>
@@ -26,7 +22,7 @@ const Banner = () => {
           personalizada e no seu ritmo.
         </p>
         <span>
-          <button onClick={handleClickOpen} className={styles.banner__button}>Criar baralho</button>
+          <button onClick={handleCloseModal} className={styles.banner__button}>Criar baralho</button>
         </span>
       </div>
       {isOpen && <CreateDeck titleAction="Criar" handleCloseModal={handleCloseModal} />}

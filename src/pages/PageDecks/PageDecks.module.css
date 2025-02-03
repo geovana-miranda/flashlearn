@@ -17,16 +17,15 @@
 .decks__button {
     width: 200px;
     height: 40px;
-    background-color: #a100c9;
-    border: none;
+    background-image: linear-gradient(to right top, #6c5ce7, #5e77f3, #588ffb, #60a5fe, #74b9ff); 
     border-radius: 10px;
+    border: none;
     font-size: 1em;
-    text-transform: uppercase;
     color: #FFF;
-    font-weight: 400;
+    font-weight: 600;
     cursor: pointer;
 }
 
 .decks__button:hover {
-  background: #8100a7;
+    background: linear-gradient(90deg, #2F80ED, #56CCF2);
 }

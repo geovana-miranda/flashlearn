@@ -5,11 +5,11 @@
     font-optical-sizing: auto;
     font-weight: <weight>;
     font-style: normal;
-    /* background: linear-gradient(180deg, #ffe6f7, #f9f9f9) */
 }
 
 body {
-    background: linear-gradient(180deg, #ffe6f7, #f9f9f9)
+    min-height: 100vh;
+    background: #f9f4fb;
 }
 
 a {

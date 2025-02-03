@@ -6,60 +6,58 @@
   display: flex;
   flex-direction: column;
   gap: 0.6em;
-  justify-content: flex-start;
-  background: linear-gradient(135deg, #ffe6f7, #ffc2e1);
-  border-radius: 12px;
+  background: #f9f4fb;
+  border: 1px solid #55555541;
+  border-radius: 10px;  
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
 }
 
 .container__deck:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.container__cardsicons {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .cards {
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: #555;
-  margin-bottom: 0.3em;
 }
 
 .title {
   font-size: 2em;
-  color: #6d0177;
-  margin-bottom: 10px;
+  color: #333;
+  font-weight: 500;
 }
 
-.container__button {
-    display: flex;
-    justify-content: flex-end;
-}
-
-.button {
-  padding: 10px 15px;
+.btn {
+  padding: 10px 20px;
   font-size: 1em;
-  border-radius: 12px;
+  border-radius: 10px;
   cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
-  background: #a100c9;
   border: none;
-  color: #fff;
+  transition: background-color 0.3s, color 0.3s;
+  background: linear-gradient(to right top, #6c5ce7, #5e77f3, #588ffb, #60a5fe, #74b9ff); 
+  color: #fff;  
   transition: background-color 0.3s ease;
 }
 
-.button:hover {
-  background: #8100a7;
-}
+.btn:hover {
+  background: linear-gradient(90deg, #2F80ED, #56CCF2);}
 
 .icon {
-  font-size: 1.5em;
+  font-size: 1.1em;
   margin-left: 0.2em;
   color: #444;
   cursor: pointer;
 }
 
 .icon:hover {
-  color: #8100a7;
+  color: #74B9FF;
 }

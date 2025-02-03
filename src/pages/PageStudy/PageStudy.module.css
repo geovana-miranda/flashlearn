@@ -1,0 +1,94 @@
+.container__page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.container__header {
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1.8em;
+}
+
+.deck__subtitle {
+  color: #333;
+  font-size: 0.8em;
+}
+
+.score {
+  font-size: 1.5em;
+}
+
+.container__buttons {
+  margin-top: 1.5em;
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+}
+
+.btn {
+  width: 130px;
+  height: 40px;
+  cursor: pointer;
+  background: none;
+  font-weight: 500;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  border: none;
+  font-size: 1em;
+}
+
+.btn__already {
+  background-image: linear-gradient(to right top, #6c5ce7, #5e77f3, #588ffb, #60a5fe, #74b9ff);
+  color: #FFF;
+}
+
+.btn__already:hover {
+  background: linear-gradient(90deg, #2F80ED, #56CCF2);
+}
+
+.btn__not {
+  background-color: #fff;
+  color: #2F80ED;
+  border: 1px solid #2F80ED;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn__not:hover {
+  background-color: #e0e0e045;
+  text-shadow: 0px 0px 1px rgba(0, 123, 255, 0.6);
+}
+
+.btn__already__disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+}
+
+.btn__not__disabled {
+  background-color: #fff;
+  color: #666;
+  border: 1px solid #ccc;
+  cursor: not-allowed;
+}
+
+.progress_bar {
+  width: 540px;
+  height: 7px;
+  background: #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 1em;
+}
+
+.progress_fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(to right, #6c5ce7, #74b9ff);
+  transition: width 0.4s ease-in-out;
+}

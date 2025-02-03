@@ -3,6 +3,7 @@
     margin: 2em auto;
 }
 
+
 .deck__header {
     display: flex;
     justify-content: space-between;
@@ -14,48 +15,86 @@
     margin-bottom: 1em;
 }
 
-.deck__button {
-    width: 200px;
-    height: 40px;
-    background-color: #a100c9;
-    border: none;
-    border-radius: 10px;
-    font-size: 1em;
-    text-transform: uppercase;
-    color: #FFF;
-    font-weight: 400;
-    cursor: pointer;
+.container__buttons {
+    display: flex;
+    gap: 10px;
 }
 
-.deck__button:hover {
-  background: #8100a7;
+.btn {
+    height: 40px;
+    cursor: pointer;
+    font-weight: 500;
+    border-radius: 10px;
+    border: none;
+    font-size: 1em;
+    transition: all 0.3s ease;
+}
+
+.btn__newcard {
+    width: 130px;
+    background-color: #fff;
+    color: #2F80ED;
+    border: 1px solid #2F80ED;
+}
+
+.btn__newcard:hover {
+    background-color: #e0e0e025;
+    text-shadow: 0px 0px 1px rgba(0, 123, 255, 0.6);
+}
+
+.btn__study {
+    width: 180px;
+    background-image: linear-gradient(to right top, #6c5ce7, #5e77f3, #588ffb, #60a5fe, #74b9ff);
+    color: #FFF;
+}
+
+.btn__study__disable {
+    width: 180px;
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+}
+
+.btn__study:hover {
+    background: linear-gradient(90deg, #2F80ED, #56CCF2);
 }
 
 .container__cards {
     margin: auto;
-    width: 700px;
+    width: 1000px;
     display: flex;
     flex-direction: column;
     gap: 0.6em;
 }
 
+.empty__msg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .container__card {
     background: #FFF;
-    font-size: 1.2em;
+    font-size: 1em;
     padding: 1em;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: flex;    
+    display: flex;
     justify-content: space-between;
     align-items: center;
     transition: box-shadow 0.3 ease;
+}
+
+.definition {
+    width: 600px;
+    text-align: center;
 }
 
 .container__card:hover {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.container__button {
+.container__icons {
     display: flex;
     justify-content: flex-end;
 }
@@ -65,8 +104,8 @@
     margin-left: 0.2em;
     color: #444;
     cursor: pointer;
-  }
-  
-  .icon:hover {
-    color: #8100a7;
-  }
+}
+
+.icon:hover {
+    color: #74B9FF;
+}

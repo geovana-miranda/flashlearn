@@ -1,12 +1,11 @@
 .banner {
-    width: 1000px;
-    margin: auto;
-  background: linear-gradient(135deg, #ffc2e1, #ff99cc);
+  width: 1000px;
+  margin: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-radius: 30px;
-  padding: 2em 2em 0;
+  color: #333;
 }
 
 .banner__container {
@@ -17,33 +16,30 @@
 }
 
 .banner__text1 {
-    color: #fff;
-    font-size: 1.8em;
-    font-weight: 600;
-  }
+  font-size: 1.8em;
+  font-weight: 600;
+}
 
 .banner__text {
-  color: #fff;
   font-size: 1.2em;
 }
 
 .banner__button {
-    width: 250px;
-    height: 40px;
-    background-color: #a100c9;
-    border: none;
-    border-radius: 20px;
-    font-size: 1em;
-    text-transform: uppercase;
-    color: #FFF;
-    font-weight: 400;
-    cursor: pointer;
+  width: 200px;
+  height: 40px;
+  background-image: linear-gradient(to right top, #6c5ce7, #5e77f3, #588ffb, #60a5fe, #74b9ff);
+  border: none;
+  border-radius: 10px;
+  font-size: 1em;
+  color: #FFF;
+  font-weight: 600;
+  cursor: pointer;
 }
 
 .banner__button:hover {
-  background: #8100a7;
+  background: linear-gradient(90deg, #2F80ED, #56CCF2);
 }
 
 .banner__image {
-  width: 350px;
+  width: 380px;
 }

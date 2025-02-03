@@ -1,7 +1,8 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import styles from "./CreateCard.module.css";
-import { DecksContext, ICard } from "../../context/DecksContext";
+import { DecksContext } from "../../context/DecksContext";
+import { ICard } from "../../types/types";
 
 interface ICreateCardProps {
   cardToEdit?: ICard;
@@ -24,12 +25,10 @@ const CreateCard = (props: ICreateCardProps) => {
     if (inputRef.current) inputRef.current.focus();
   }, []);
 
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-
+  function validate() {
     if (!term || !definition) {
       setError("O card deve ter um termo e uma definição válidos");
-      return;
+      return false;
     }
 
     const exist = decks
@@ -40,51 +39,57 @@ const CreateCard = (props: ICreateCardProps) => {
           term.trim().toLocaleLowerCase()
       );
 
+    if (exist && exist.id !== cardToEdit?.id) {
+      setError("Você já adicionou um card com esse termo");
+      return false;
+    }
+
+    return true;
+  }
+
+  function createCard() {
+    const newCard = {
+      id: uuidv4(),
+      term: term,
+      definition: definition,
+    };
+
+    const updatedDecks = decks.map((deck) => {
+      if (deck.id === idDeck) {
+        return { ...deck, cards: [...deck.cards, newCard] };
+      }
+      return deck;
+    });
+
+    setDecks(updatedDecks);
+  }
+
+  function editCard() {
+    if (!editCard) return;
+    const updatedCard = decks.map((deck) =>
+      deck.id === idDeck
+        ? {
+            ...deck,
+            cards: deck.cards.map((card) =>
+              card.id === cardToEdit!.id
+                ? { ...card, term: term, definition: definition }
+                : card
+            ),
+          }
+        : deck
+    );
+
+    setDecks(updatedCard);
+  }
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+
+    if (!validate()) return;
     if (cardToEdit) {
-      if (exist && exist.id !== cardToEdit.id) {
-        setError("Você já adicionou um card com esse termo");
-        return;
-      }
-
-      if (cardToEdit.term === term && cardToEdit.definition === definition) {
-        handleCloseModal();
-        return;
-      }
-
-      const updatedCard = decks.map((deck) =>
-        deck.id === idDeck
-          ? {
-              ...deck,
-              cards: deck.cards.map((card) =>
-                card.id === cardToEdit.id
-                  ? { ...card, term: term, definition: definition }
-                  : card
-              ),
-            }
-          : deck
-      );
-
-      setDecks(updatedCard);
+      editCard();
     } else {
-      if (exist) {
-        setError("Você já adicionou um card com esse termo");
-        return;
-      }
-
-      const newCard = {
-        id: uuidv4(),
-        term: term,
-        definition: definition,
-      };
-
-      const updatedDecks = decks.map((deck) => {
-        if (deck.id === idDeck) {
-          return { ...deck, cards: [...deck.cards, newCard] };
-        }
-        return deck;
-      });
-
-      setDecks(updatedDecks);
+      createCard();
     }
 
     resetForm();
@@ -98,8 +103,8 @@ const CreateCard = (props: ICreateCardProps) => {
   }
 
   return (
-    <div className={styles.modalOverlay}>
-      <div className={styles.modalContent}>
+    <div className={styles.modal__overlay}>
+      <div className={styles.modal__content}>
         <h3>Adicionar card</h3>
         {error ? <p className={styles.error}>{error}</p> : ""}
         <form className={styles.form}>
@@ -110,7 +115,6 @@ const CreateCard = (props: ICreateCardProps) => {
               value={term}
               onChange={(e) => setTerm(e.target.value)}
               type="text"
-              maxLength={20}
             />
           </label>
 
@@ -120,7 +124,6 @@ const CreateCard = (props: ICreateCardProps) => {
               value={definition}
               onChange={(e) => setDefinition(e.target.value)}
               type="text"
-              maxLength={40}
             />
           </label>
           <div className={styles.button__container}>
