@@ -4,7 +4,9 @@ import styles from "./Header.module.css";
 const Header = () => {
   return (
     <header>
-      <p className={styles.title}>FlashLearn</p>
+      <p className={styles.title}>
+        <Link to="/">FlashLearn</Link>
+      </p>
       <nav>
         <ul className={styles.nav}>
           <li className={styles.nav__item}>

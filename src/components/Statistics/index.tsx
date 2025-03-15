@@ -57,10 +57,11 @@ const Statistics = ({
                 </>
               ) : (
                 <>
-                  <p className={styles.statistics__congratulations}>
+                {newStudyAccuracy != 100 && lastStudyAccuracy != 100  &&                  
+                  (<p className={styles.statistics__congratulations}>
                     <span className={styles.icon}>😞</span> Você não melhorou em
                     relação à última sessão!
-                  </p>
+                  </p>)}
                   <p className={styles.statistics__congratulations}>
                     Sua taxa anterior foi: <strong>{lastStudyAccuracy}%</strong>
                   </p>
